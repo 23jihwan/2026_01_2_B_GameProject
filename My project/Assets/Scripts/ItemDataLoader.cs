@@ -1,52 +1,52 @@
-using Newtonsoft.Json;
-using NUnit.Framework;
-using System.Collections.Generic;
-using System.Text;
-using Unity.VisualScripting;
 using UnityEngine;
-
+using System.Text;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 public class ItemDataLoader : MonoBehaviour
 {
     [SerializeField]
-    private string jsonFileName = "items";      //Resource í´ë”ì—ì„œ ê°€ì ¸ì˜¬ JSON íŒŒì¼ ì´ë¦„
+    private string jsonFileName = "items";                      //Resource Æú´õ¿¡¼­ °¡Àú¿Ã JSON ÆÄÀÏ ÀÌ¸§ 
 
     private List<ItemData> itemList;
 
-    private void Start()
+    void Start()
     {
         LoadItemData();
     }
-    //í•œê¸€ ì¸ì½”ë”©ì„ ìœ„í•œ í•¼í¼ í•¨ìˆ˜
 
+
+    //ÇÑ±Û ÀÎÄÚµùÀ» À§ÇÑ ÇÛÆÛ ÇÔ¼ö 
     private string EncodeKorean(string text)
     {
-        if (string.IsNullOrEmpty(text)) return "";      //í…ìŠ¤íŠ¸ê°€ NULL ê°’ì´ë©´ í•¨ìˆ˜ë¥¼ ëë‚¸ë‹¤.
-        byte[] bytes = Encoding.UTF8.GetBytes(text);    //string ì„ Byteë°°ì—´ë¡œ ë³€í™˜í•œ í›„
-        return Encoding.UTF8.GetString(bytes);          //ì–¸ì½”ë”©ì„ UTF8ë¡œ ë°”ê¾¼ë‹¤.
+        if (string.IsNullOrEmpty(text)) return "";             //ÅØ½ºÆ®°¡ NULL °ªÀÌ¸é ÇÔ¼ö¸¦ ³¡³½´Ù. 
+        byte[] bytes = Encoding.Default.GetBytes(text);         //string À» Byte ¹è¿­·Î º¯È¯ÇÑ ÈÄ
+        return Encoding.UTF8.GetString(bytes);                  //ÀÎÄÚµùÀ» UTF8·Î ¹Ù²Û´Ù. 
     }
 
     void LoadItemData()
     {
-        TextAsset jsonFile = Resources.Load<TextAsset>(jsonFileName);
+        TextAsset jsonFile = Resources.Load<TextAsset>(jsonFileName);               //TextAsset ÇüÅÂ·Î Json ÆÄÀÏÀ» ·ÎµùÇÑ´Ù. 
 
         if (jsonFile != null)
         {
-            //ì›ë³¸ í…ìŠ¤íŠ¸ì—ì„œ UTF8ë¡œ ë³€í™˜ ì²˜ë¦¬
+            //¿øº» ÅØ½ºÆ®¿¡¼­ UTF8·Î º¯È¯ Ã³¸®
             byte[] bytes = Encoding.Default.GetBytes(jsonFile.text);
             string currnetText = Encoding.UTF8.GetString(bytes);
 
-            //ë³€í™˜ ëœ í…ìŠ¤íŠ¸ ì‚¬ìš©
+            //º¯È¯ µÈ ÅØ½ºÆ® »ç¿ë
             itemList = JsonConvert.DeserializeObject<List<ItemData>>(currnetText);
 
-            foreach (var item in itemList)
-            {
-                Debug.Log($"ì•„ì´í…œ : {EncodeKorean(item.itemName)}, ì„¤ëª… : {EncodeKorean(item.description)}"); 
+            Debug.Log($"·ÎµåµÈ ¾ÆÀÌÅÛ ¼ö : {itemList.Count}");
+
+            foreach(var item in itemList)
+            { 
+                Debug.Log($"¾ÆÀÌÅÛ : {EncodeKorean(item.itemName)}, ¼³¸í : {EncodeKorean(item.description)}");
             }
         }
         else
         {
-            Debug.LogError($"JSON íŒŒì¼ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. :{jsonFileName}");
+            Debug.LogError($"JSON ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù. : {jsonFileName}");
         }
     }
 }

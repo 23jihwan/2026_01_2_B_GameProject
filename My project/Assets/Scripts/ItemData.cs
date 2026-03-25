@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[Serializable]
 public class ItemData
 {
     public int id;
@@ -14,23 +15,21 @@ public class ItemData
     public int price;
     public int power;
     public int level;
-    public bool isStackedble;
+    public bool isStackable;
     public string iconPath;
 
-    // ë¬¸ìì—´ì„ ì—´ê±°í˜•ìœ¼ë¡œ ë³€í™˜í•˜ëŠ” ë©”ì„œë“œ
-
+    //¹®ÀÚ¿­À» ¿­°ÅÇüÀ¸·Î º¯È¯ ÇÏ´Â ¸Ş¼­µå
     public void InitalizeEnums()
     {
-        if(Enum.TryParse(itemTypeString, out ItemType parsdType))
+        if(Enum.TryParse(itemTypeString, out ItemType parsedType))
         {
-            itemType = parsdType;
+            itemType = parsedType;
         }
         else
         {
-            Debug.LogError($"ì•„ì´í…œ '{itemName} ì— ìœ íš¨í•˜ì§€ ì•Šì€ ì•„ì´í…œ íƒ€ì…: {itemTypeString}");
-                //ê¸°ë³¸ê°’ ì„¤ì •
-                itemType = ItemType.Consumable;
+            Debug.LogError($"¾ÆÀÌÅÛ '{itemName} ¿¡ À¯È¿ÇÏÁö ¾ÊÀº ¾ÆÀÌÅÛ Å¸ÀÔ : {itemTypeString}");
+            //±âº»°ª ¼³Á¤ 
+            itemType = ItemType.Consumable;
         }
     }
-
 }
