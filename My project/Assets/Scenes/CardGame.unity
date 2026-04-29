@@ -161,6 +161,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0742bde1e1c006d44ab4b3d57d656bf7, type: 2}
   - {fileID: 11400000, guid: 937af8f29a781f44d85eb5d5e2603d35, type: 2}
   - {fileID: 11400000, guid: a4b7a9c63a294e74ca9ca80e21b5e3d6, type: 2}
+  - {fileID: 11400000, guid: 73811bbb41be4bd42aa670b5f8b44196, type: 2}
+  - {fileID: 11400000, guid: 206ddc9ddb88ad1428cf242871112387, type: 2}
+  - {fileID: 11400000, guid: 73811bbb41be4bd42aa670b5f8b44196, type: 2}
+  - {fileID: 11400000, guid: 206ddc9ddb88ad1428cf242871112387, type: 2}
+  - {fileID: 11400000, guid: 73811bbb41be4bd42aa670b5f8b44196, type: 2}
+  - {fileID: 11400000, guid: 206ddc9ddb88ad1428cf242871112387, type: 2}
   handCards: []
   discardCards: []
   cardPrefabs: {fileID: 2525038192866737764, guid: c96dc00f2718a7a4692e314f3b698483, type: 3}
